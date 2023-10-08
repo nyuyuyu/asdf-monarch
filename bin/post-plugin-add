@@ -1,0 +1,6 @@
+echo ""
+echo "monarch requires several dependent programs to be installed."
+echo "See below for details."
+echo ""
+echo "https://monarchapp.io/docs/install"
+echo ""
