@@ -11,6 +11,55 @@ fail() {
 	exit 1
 }
 
+monarch_download_base_url() {
+	local version="$1"
+
+	case "$version" in
+	1.*)
+		echo -n "https://d2dpq905ksf9xw.cloudfront.net"
+		;;
+	*)
+		echo -n "https://d148mrbia1nlbw.cloudfront.net"
+		;;
+	esac
+}
+
+platform() {
+	case "$(uname -s)" in
+	"Darwin")
+		echo -n "macos"
+		;;
+	"Linux")
+		echo -n "linux"
+		;;
+	*)
+		fail "Unsupported platform"
+		;;
+	esac
+}
+
+platform_extension() {
+	case "$(uname -s)" in
+	"Linux")
+		echo "tar.xz"
+		;;
+	*)
+		echo "zip"
+		;;
+	esac
+}
+
+tar_decompression_option() {
+	case "$(uname -s)" in
+	"Linux")
+		echo "-xJf"
+		;;
+	*)
+		echo "-xzf"
+		;;
+	esac
+}
+
 curl_opts=(-fsSL)
 
 sort_versions() {
@@ -34,8 +83,7 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	# TODO: Adapt the release URL convention for monarch
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	url="$(monarch_download_base_url "$version")/$(platform)/monarch_$(platform)_${version}.$(platform_extension)"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
