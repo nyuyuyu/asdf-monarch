@@ -16,10 +16,10 @@ monarch_download_base_url() {
 
 	case "$version" in
 	1.*)
-		echo -n "https://d2dpq905ksf9xw.cloudfront.net"
+		echo "https://d2dpq905ksf9xw.cloudfront.net"
 		;;
 	*)
-		echo -n "https://d148mrbia1nlbw.cloudfront.net"
+		echo "https://d148mrbia1nlbw.cloudfront.net"
 		;;
 	esac
 }
@@ -27,10 +27,10 @@ monarch_download_base_url() {
 platform() {
 	case "$(uname -s)" in
 	"Darwin")
-		echo -n "macos"
+		echo "macos"
 		;;
 	"Linux")
-		echo -n "linux"
+		echo "linux"
 		;;
 	*)
 		fail "Unsupported platform"
