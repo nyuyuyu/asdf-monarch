@@ -49,13 +49,13 @@ platform_extension() {
 	esac
 }
 
-tar_decompression_option() {
+platform_tar() {
 	case "$(uname -s)" in
-	"Linux")
-		echo "-xJf"
+	"Darwin")
+		echo "bsdtar"
 		;;
 	*)
-		echo "-xzf"
+		echo "tar"
 		;;
 	esac
 }
