@@ -49,6 +49,17 @@ platform_extension() {
 	esac
 }
 
+platform_tar() {
+	case "$(uname -s)" in
+	"Darwin")
+		echo "bsdtar"
+		;;
+	*)
+		echo "tar"
+		;;
+	esac
+}
+
 curl_opts=(-fsSL)
 
 sort_versions() {
