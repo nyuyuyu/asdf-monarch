@@ -49,17 +49,6 @@ platform_extension() {
 	esac
 }
 
-tar_decompression_option() {
-	case "$(uname -s)" in
-	"Linux")
-		echo "-xJf"
-		;;
-	*)
-		echo "-xzf"
-		;;
-	esac
-}
-
 curl_opts=(-fsSL)
 
 sort_versions() {
